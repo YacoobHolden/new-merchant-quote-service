@@ -5,6 +5,16 @@ query cost for a given industry, transaction count and transaction volume
 ## Architecture
 TBD
 
+## API
+* **POST /api/csv**
+    * **Accepts**: Multipart file
+    * **Returns**: Empty response
+* **GET /api/quote?industry=X&transactionVolume=Y&transactionCount=Z**
+    * **Accepts**: Query parameters as above
+    * **Returns**: Quote price in $
+
+Further details on API can be found [here](TBD) or by following 'Running locally'
+
 ## Building
 
 ### Building source code
@@ -32,6 +42,8 @@ $ cd localdev
 $ ./run-all.sh
 ```
 
+Can then view and use API [here](http://172.19.2.20:8080/api/swagger-ui.html)
+
 ## Deploying
 TBD
 
@@ -43,8 +55,8 @@ TBD
 ### Asssumptions
 1. If lower than lowest value - use lowest known value for that industry
 1. If higher than greatest value - use greatest known value for that industry
-1. Don't need to handle updates of uploaded values
 
 ### Known Issues
-1. Currently validate CSV or input parameters
+1. Does not currently validate CSV or input parameters
+1. Doesn't elegantly handle updates of uploaded values
 1. No authentication on APIs
