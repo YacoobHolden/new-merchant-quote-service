@@ -46,7 +46,7 @@ public class QuoteService {
 
     public BigDecimal getTransactionCountPricing(String industry, Long transactionCount) {
         TransactionCountPricing lowerPricing = transactionCountPricingRepository.getPricingLessThanOrEqual(industry, transactionCount);
-        if (lowerPricing != null && transactionCount.equals(lowerPricing.getTransactionCount())) {
+        if (lowerPricing != null && transactionCount.compareTo(lowerPricing.getTransactionCount()) == 0) {
             return lowerPricing.getPrice();
         }
         TransactionCountPricing upperPricing = transactionCountPricingRepository.getPricingGreaterThanOrEqual(industry, transactionCount);
@@ -69,7 +69,7 @@ public class QuoteService {
 
     public BigDecimal getTransactionVolumePricing(String industry, BigDecimal transactionVolume) {
         TransactionVolumePricing lowerPricing = transactionVolumePricingRepository.getPricingLessThanOrEqual(industry, transactionVolume);
-        if (lowerPricing != null && transactionVolume.equals(lowerPricing.getTransactionVolume())) {
+        if (lowerPricing != null && transactionVolume.compareTo(lowerPricing.getTransactionVolume()) == 0) {
             return lowerPricing.getPrice();
         }
         TransactionVolumePricing upperPricing = transactionVolumePricingRepository.getPricingGreaterThanOrEqual(industry, transactionVolume);

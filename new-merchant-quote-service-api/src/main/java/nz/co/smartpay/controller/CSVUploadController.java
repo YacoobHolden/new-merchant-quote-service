@@ -3,6 +3,7 @@ package nz.co.smartpay.controller;
 import nz.co.smartpay.service.CSVService;
 import nz.co.smartpay.validator.CSVValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +24,10 @@ public class CSVUploadController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String updateCSV(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity updateCSV(@RequestParam("file") MultipartFile file) throws Exception {
         csvValidator.validate(file);
-        return csvService.updateCSV(file);
+        csvService.updateCSV(file);
+        return ResponseEntity.ok().build();
     }
 
 }
