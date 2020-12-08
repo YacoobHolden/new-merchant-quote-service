@@ -1,0 +1,29 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+info:
+  app:
+    name: 'new-merchant-quote-service-api'
+    description: 'new-merchant-quote-service'
+    version: '{version}'
+server:
+  port: 8080
+  servlet:
+    context-path: '/api'
+  compression:
+    enabled: true
+  tomcat:
+    max-threads: 400
+    mbeanregistry:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: '/status'

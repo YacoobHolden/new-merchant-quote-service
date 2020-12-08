@@ -1,0 +1,31 @@
+package nz.co.smartpay.controller;
+
+import nz.co.smartpay.service.CSVService;
+import nz.co.smartpay.validator.CSVValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+@RestController
+@RequestMapping(value="/csv")
+public class CSVUploadController {
+
+    private CSVService csvService;
+    private CSVValidator csvValidator;
+
+    @Autowired
+    public CSVUploadController(CSVService csvService, CSVValidator csvValidator) {
+        this.csvService = csvService;
+        this.csvValidator = csvValidator;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String updateCSV(@RequestParam("file") MultipartFile file) {
+        csvValidator.validate(file);
+        return csvService.updateCSV(file);
+    }
+
+}

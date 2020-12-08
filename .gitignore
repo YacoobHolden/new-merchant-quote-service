@@ -1,0 +1,6 @@
+.idea/
+*.iml
+app.jar
+target/
+*/dependency-reduced-pom.xml
+tmp/
