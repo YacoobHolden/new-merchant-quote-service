@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -24,8 +25,8 @@ public class TransactionCountPricing implements Serializable {
     private String industry;
 
     @Column(name = "transaction_count")
-    private Integer transactionCount;
+    private Long transactionCount;
 
     @Column(name = "price")
-    private Long price;
+    private BigDecimal price;
 }

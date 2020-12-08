@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -23,9 +24,9 @@ public class TransactionVolumePricing {
     private String industry;
 
     @Column(name = "transaction_volume")
-    private Integer transactionVolume;
+    private BigDecimal transactionVolume;
 
     @Column(name = "price")
-    private Long price;
+    private BigDecimal price;
 
 }

@@ -39,6 +39,6 @@ public class TerminalPricingRepository {
                 "WHERE industry = :industry");
         Query query = em.createNativeQuery(sql, TerminalPricing.class);
         query.setParameter("industry", industry);
-        return (TerminalPricing) query.getSingleResult();
+        return (TerminalPricing) query.getResultList().stream().findFirst().orElse(null);
     }
 }

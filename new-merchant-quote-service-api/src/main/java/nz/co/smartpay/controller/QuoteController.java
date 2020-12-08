@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping(value="/quote")
 public class QuoteController {
@@ -22,7 +24,7 @@ public class QuoteController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Long getQuote(@RequestParam String industry, @RequestParam Long transactionCount, @RequestParam Long transactionVolume) {
+    public BigDecimal getQuote(@RequestParam String industry, @RequestParam Long transactionCount, @RequestParam BigDecimal transactionVolume) {
         quoteRequestValidator.validate(industry, transactionCount, transactionVolume);
         return quoteService.getQuote(industry, transactionCount, transactionVolume);
     }
