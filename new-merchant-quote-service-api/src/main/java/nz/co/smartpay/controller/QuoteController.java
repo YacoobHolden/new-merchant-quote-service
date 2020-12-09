@@ -3,6 +3,7 @@ package nz.co.smartpay.controller;
 import nz.co.smartpay.service.QuoteService;
 import nz.co.smartpay.validator.QuoteRequestValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 
 @RestController
 @RequestMapping(value="/quote")
+@PreAuthorize("hasAnyRole('USER')")
 public class QuoteController {
 
     private QuoteService quoteService;
