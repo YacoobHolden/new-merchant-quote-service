@@ -15,11 +15,11 @@ Parameters:
     Description: A human-readable name for the service.
   HealthCheckPath:
     Type: String
-    Default: /api/health
+    Default: /health
     Description: Path to perform the healthcheck on each instance.
   HealthCheckIntervalSeconds:
     Type: Number
-    Default: 10
+    Default: 120
     Description: Number of seconds to wait between each health check.
   ImageUrl:
     Type: String
@@ -44,7 +44,7 @@ Parameters:
       should be connected to.
   DesiredCount:
     Type: Number
-    Default: 2
+    Default: 1
     Description: How many copies of the service task to run.
 
 Resources:

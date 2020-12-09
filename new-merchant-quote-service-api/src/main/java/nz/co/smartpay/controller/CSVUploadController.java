@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @PreAuthorize("hasAnyRole('ADMIN')")
-@RequestMapping(value="/csv")
+@RequestMapping(value="/api/csv")
 public class CSVUploadController {
 
     private CSVService csvService;

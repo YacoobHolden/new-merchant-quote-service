@@ -14,7 +14,7 @@ info:
 server:
   port: 8080
   servlet:
-    context-path: '/api'
+    context-path: '/'
   compression:
     enabled: true
   tomcat:
@@ -26,4 +26,4 @@ management:
     web:
       exposure:
         include: '*'
-      base-path: '/status'
+      base-path: '/health'

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping(value="/quote")
+@RequestMapping(value="/api/quote")
 @PreAuthorize("hasAnyRole('USER')")
 public class QuoteController {
 
