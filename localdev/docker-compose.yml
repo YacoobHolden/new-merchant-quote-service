@@ -4,13 +4,13 @@ services:
   quoteservice:
     environment:
       JAVA_OPTS: -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n
-      JDBCURL: jdbc:postgresql://new-merchant-quota-service-rds.local.com:5432/quote
+      JDBCURL: jdbc:postgresql://new-merchant-quote-service-rds.local.com:5432/quote
       JDBCUSERNAME: postgres
       JDBCPASSWORD: postgres
     ports:
       - 8000:8000
       - 8080:8080
-    image: new-merchant-quota-service-api
+    image: new-merchant-quote-service-api
     networks:
       app_net:
         ipv4_address: 172.19.2.20
@@ -24,27 +24,8 @@ services:
     networks:
       app_net:
         aliases:
-          - new-merchant-quota-service-rds.local.com
+          - new-merchant-quote-service-rds.local.com
         ipv4_address: 172.19.2.97
-
-#  localstack:
-#    restart: always
-#    image: localstack/localstack
-#    environment:
-#      - "SERVICES=s3,sqs"
-#      - "DEFAULT_REGION=ap-southeast-2"
-#      - "HOSTNAME=localstack"
-#      - "DATA_DIR=/tmp/localstack/data"
-#    ports:
-#      # S3 Port
-#      - "4572:4572"
-#      # SQS Port
-#      - "4576:4576"
-#    networks:
-#      app_net:
-#        aliases:
-#          - localstack.local.erdmg.com
-#        ipv4_address: 172.19.2.50
 
 networks:
   app_net:

@@ -4,7 +4,7 @@ cd ..
 set -e
 
 mvn clean package -f pom.xml
-docker build -t new-merchant-quota-service-api -f localdev/Dockerfile .
+docker build -t new-merchant-quote-service-api -f localdev/Dockerfile .
 
 # Move back to localdev dir and start docker
 cd localdev

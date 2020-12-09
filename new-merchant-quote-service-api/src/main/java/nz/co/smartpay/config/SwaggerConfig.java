@@ -27,8 +27,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("New Merchant Quota Service API")
-                .description("New Merchant Quota Service API reference for developers")
+        return new ApiInfoBuilder().title("New Merchant Quote Service API")
+                .description("New Merchant Quote Service API reference for developers")
                 .contact( new Contact("Jacob Holden","", "yacoob.holden@gmail.com"))
                 .version("1.0")
                 .build();

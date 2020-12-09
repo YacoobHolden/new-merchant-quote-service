@@ -45,7 +45,16 @@ $ ./run-all.sh
 Can then view and use API [here](http://172.19.2.20:8080/api/swagger-ui.html)
 
 ## Deploying
-TBD
+Requires:
+* jq
+* docker
+* aws cli (V1)
+
+Instructions:
+```bash
+# Run deployment script
+$ ./deploy.sh
+```
 
 ## Decisions, Assumptions & Known Issues
 ### Decisions
