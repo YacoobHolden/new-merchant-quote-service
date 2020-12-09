@@ -99,6 +99,6 @@ $  curl YOUR_LB_DNS/api/csv?industry=INDUSTRY&transactionCount=TRANSACTION_COUNT
 
 ### Known Issues
 1. Does not currently validate CSV or input parameters
-1. Doesn't elegantly handle updates of uploaded values
 1. Database not properly indexed
 1. RBAC not being applied properly
+1. Lack of unit, component and integration tests

@@ -1,5 +1,6 @@
 package nz.co.smartpay.service;
 
+import nz.co.smartpay.exception.NotFoundException;
 import nz.co.smartpay.orm.model.TerminalPricing;
 import nz.co.smartpay.orm.model.TransactionCountPricing;
 import nz.co.smartpay.orm.model.TransactionVolumePricing;
@@ -39,7 +40,7 @@ public class QuoteService {
     public BigDecimal getTerminalPricing(String industry) {
         TerminalPricing pricing = terminalPricingRepository.findByIndustry(industry);
         if (pricing == null) {
-            // @todo - handle errors
+            throw new NotFoundException("Terminal pricing not found");
         }
         return pricing.getPrice();
     }
@@ -51,7 +52,7 @@ public class QuoteService {
         }
         TransactionCountPricing upperPricing = transactionCountPricingRepository.getPricingGreaterThanOrEqual(industry, transactionCount);
         if (lowerPricing == null && upperPricing == null) {
-            // @todo - handle error
+            throw new NotFoundException("Transaction count pricing not found");
         } else if (lowerPricing == null) {
             // Assumption 1 - If lower than lowest value - use lowest known value for that industry
             return upperPricing.getPrice();
@@ -74,7 +75,7 @@ public class QuoteService {
         }
         TransactionVolumePricing upperPricing = transactionVolumePricingRepository.getPricingGreaterThanOrEqual(industry, transactionVolume);
         if (lowerPricing == null && upperPricing == null) {
-            // @todo - handle error
+            throw new NotFoundException("Transaction volume pricing not found");
         } else if (lowerPricing == null) {
             // Assumption 1 - If lower than lowest value - use lowest known value for that industry
             return upperPricing.getPrice();
