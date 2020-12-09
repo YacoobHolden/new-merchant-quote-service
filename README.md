@@ -98,7 +98,7 @@ $  curl YOUR_LB_DNS/api/csv?industry=INDUSTRY&transactionCount=TRANSACTION_COUNT
 1. If new CSV uploaded, favour new entries over existing
 
 ### Known Issues
-1. Does not currently validate CSV or input parameters
+1. Does not currently validate CSV
 1. Database not properly indexed
 1. RBAC not being applied properly
 1. Lack of unit, component and integration tests
