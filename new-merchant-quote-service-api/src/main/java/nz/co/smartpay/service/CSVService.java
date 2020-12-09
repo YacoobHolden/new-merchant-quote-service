@@ -38,10 +38,18 @@ public class CSVService {
     public void updateCSV(MultipartFile file) throws Exception {
         List<CSVRow> csvRows = reader.readCSVRowsFromFile(file);
         // @ todo - Insert in one insert statement
-        // Assumption 3 - Don't need to handle updates of uploaded values
         for (CSVRow row : csvRows) {
             // Add new terminal entry
             if (CSVRow.RowType.TERMINAL.equals(row.getRowType())) {
+                // Check existing
+                TerminalPricing existing = terminalPricingRepository.findByIndustry(row.getIndustry());
+                if (existing != null) {
+                    existing.setPrice(row.getPrice());
+                    terminalPricingRepository.save(existing);
+                    continue;
+                }
+
+                // Otherwise save new row
                 TerminalPricing pricing = TerminalPricing.builder()
                         .industry(row.getIndustry())
                         .price(row.getPrice())
@@ -49,6 +57,15 @@ public class CSVService {
                 terminalPricingRepository.save(pricing);
             } else if (CSVRow.RowType.TRANSACTION_COUNT.equals(row.getRowType())) {
                 // Add new transaction count entry
+                // Check existing
+                TransactionCountPricing existing = transactionCountPricingRepository.findByIndustryAndCount(row.getIndustry(), row.getValue().longValue());
+                if (existing != null) {
+                    existing.setPrice(row.getPrice());
+                    transactionCountPricingRepository.save(existing);
+                    continue;
+                }
+
+                // Otherwise save new row
                 TransactionCountPricing pricing = TransactionCountPricing.builder()
                         .industry(row.getIndustry())
                         .transactionCount(row.getValue().longValue())
@@ -57,6 +74,15 @@ public class CSVService {
                 transactionCountPricingRepository.save(pricing);
             } else if (CSVRow.RowType.TRANSACTION_VOLUME.equals(row.getRowType())) {
                 // Add new transaction volume entry
+                // Check existing
+                TransactionVolumePricing existing = transactionVolumePricingRepository.findByIndustryAndVolume(row.getIndustry(), row.getValue());
+                if (existing != null) {
+                    existing.setPrice(row.getPrice());
+                    transactionVolumePricingRepository.save(existing);
+                    continue;
+                }
+
+                // Otherwise save new row
                 TransactionVolumePricing pricing = TransactionVolumePricing.builder()
                         .industry(row.getIndustry())
                         .transactionVolume(row.getValue())

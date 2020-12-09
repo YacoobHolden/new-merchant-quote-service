@@ -95,7 +95,10 @@ $  curl YOUR_LB_DNS/api/csv?industry=INDUSTRY&transactionCount=TRANSACTION_COUNT
 ### Asssumptions
 1. If lower than lowest value - use lowest known value for that industry
 1. If higher than greatest value - use greatest known value for that industry
+1. If new CSV uploaded, favour new entries over existing
 
 ### Known Issues
 1. Does not currently validate CSV or input parameters
 1. Doesn't elegantly handle updates of uploaded values
+1. Database not properly indexed
+1. RBAC not being applied properly

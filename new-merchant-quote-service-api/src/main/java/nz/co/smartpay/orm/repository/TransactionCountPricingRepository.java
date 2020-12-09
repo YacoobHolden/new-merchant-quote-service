@@ -33,6 +33,19 @@ public class TransactionCountPricingRepository {
         return em.merge(transactionCountPricing);
     }
 
+    public TransactionCountPricing findByIndustryAndCount(String industry,  Long transactionCount) {
+        String sql = joinWithSpace("SELECT *",
+                "FROM quote.transaction_count_pricing",
+                "WHERE industry = :industry",
+                "AND transaction_count = :transactionCount",
+                "LIMIT 1");
+        Query query = em.createNativeQuery(sql, TransactionCountPricing.class);
+        query.setParameter("industry", industry);
+        query.setParameter("transactionCount", transactionCount);
+
+        return (TransactionCountPricing) query.getResultList().stream().findFirst().orElse(null);
+    }
+
     public TransactionCountPricing getPricingLessThanOrEqual(String industry, Long transactionCount) {
         String sql = joinWithSpace("SELECT *",
                 "FROM quote.transaction_count_pricing",

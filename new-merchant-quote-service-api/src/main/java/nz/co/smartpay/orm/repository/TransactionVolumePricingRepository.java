@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import java.math.BigDecimal;
 
 import static nz.co.smartpay.utils.CommonStringUtils.joinWithSpace;
@@ -33,6 +32,19 @@ public class TransactionVolumePricingRepository {
 
     public TransactionVolumePricing save(TransactionVolumePricing transactionVolumePricing) {
         return em.merge(transactionVolumePricing);
+    }
+
+    public TransactionVolumePricing findByIndustryAndVolume(String industry, BigDecimal transactionVolume) {
+        String sql = joinWithSpace("SELECT *",
+                "FROM quote.transaction_volume_pricing",
+                "WHERE industry = :industry",
+                "AND transaction_volume = :transactionVolume",
+                "LIMIT 1");
+        Query query = em.createNativeQuery(sql, TransactionVolumePricing.class);
+        query.setParameter("industry", industry);
+        query.setParameter("transactionVolume", transactionVolume);
+
+        return (TransactionVolumePricing) query.getResultList().stream().findFirst().orElse(null);
     }
 
     public TransactionVolumePricing getPricingLessThanOrEqual(String industry, BigDecimal transactionVolume) {
