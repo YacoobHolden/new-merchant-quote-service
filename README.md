@@ -7,7 +7,7 @@ TBD
 
 ## API
 * **POST /api/csv**
-    * **Accepts**: Multipart file
+    * **Accepts**: Multipart form data with CSV file under file key
     * **Returns**: Empty response
     * **Requires**: Authenticated with role USER
 * **GET /api/quote?industry=X&transactionVolume=Y&transactionCount=Z**
@@ -102,3 +102,4 @@ $  curl YOUR_LB_DNS/api/csv?industry=INDUSTRY&transactionCount=TRANSACTION_COUNT
 1. Database not properly indexed
 1. RBAC not being applied properly
 1. Lack of unit, component and integration tests
+1. /home page not templating correctly
